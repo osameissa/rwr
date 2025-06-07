@@ -9,6 +9,7 @@ import {
   CardMedia,
   Grid,
 } from "@mui/material";
+import "./App.css";
 
 // Static assets map
 const imageMap: Record<string, string> = {
@@ -95,6 +96,59 @@ const App: React.FC = () => {
       </section>
 
       <section style={{ padding: "2rem 0" }}>
+        <Typography variant="h4" gutterBottom>
+          Fleet Dashboard
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card sx={{ backgroundColor: "#1a1a1a", color: "white" }}>
+              <CardContent>
+                <Typography variant="h6">Total Asset Value</Typography>
+                <Typography variant="h4" color="secondary">
+                  $
+                  {mockRevenueStreams
+                    .reduce((sum, v) => sum + v.totalEarnings, 0)
+                    .toFixed(2)}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card sx={{ backgroundColor: "#1a1a1a", color: "white" }}>
+              <CardContent>
+                <Typography variant="h6">Monthly Yield (Est.)</Typography>
+                <Typography variant="h4" color="secondary">
+                  $
+                  {(
+                    mockRevenueStreams.reduce(
+                      (sum, v) => sum + v.totalEarnings,
+                      0
+                    ) / 12
+                  ).toFixed(2)}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card sx={{ backgroundColor: "#1a1a1a", color: "white" }}>
+              <CardContent>
+                <Typography variant="h6">Annualized Return</Typography>
+                <Typography variant="h4" color="secondary">
+                  {(
+                    (mockRevenueStreams.reduce(
+                      (sum, v) => sum + v.totalEarnings,
+                      0
+                    ) /
+                      3 /
+                      10000) *
+                    100
+                  ).toFixed(2)}
+                  %
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
         <Typography variant="h4" gutterBottom>
           Available Tokenized Assets
         </Typography>
